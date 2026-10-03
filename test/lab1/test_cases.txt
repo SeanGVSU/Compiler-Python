@@ -1,0 +1,38 @@
++ - * / %
+
+= == != < <= > >=
+
+( ) [ ] { } , : . ;
+
+0 1 11 120 9999
+
+4.55 0.5 100.25
+
+"test" 'test' "big test"
+
+x name my_name _funny name_num12
+
+if else elif for while def return class import from as in is not and or True False None print
+
+x = 10 # real comment test
+
+x = 1
+y = 2
+
+"yo
+'yo
+x = 10 @ 20
+
+123abc
+
+x = @
+y = "unfinished
+z = 10
+
+x = 10
+y = 20
+
+if x < y:
+    print("x is smaller")
+
+

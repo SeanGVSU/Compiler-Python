@@ -1,0 +1,28 @@
+Lab1 report:
+
+Name of language: Python
+
+regular expressions:
+numbers
+[0-9]+(\.[0-9]+)?
+string
+"([^"\n])*"|'([^'\n])*'
+identifiers
+[A-Za-z_][A-Za-z0-9_]*
+
+
+Design choices relative to Lox:
+wanted to make something more like python than lox and had the comment charecter changed from "/" to the usuwal "#"
+
+
+instructions:
+To use interactive mode use
+python3 src/python.py
+Ctrl+c (to exit)
+
+To run and to get the text to run in the scanner use this
+python3 src/python.py test/lab1/test_cases.txt
+
+
+Any known limitations or failing tests:
+can't check syntax
