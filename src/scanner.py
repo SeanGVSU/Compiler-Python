@@ -85,7 +85,7 @@ class Scanner:
             if self.match("="):
                 self.add_token(TokenType.NOT_EQUAL)
             else:
-                self.error("Unexpected character '!'")
+                self.add_token(TokenType.BANG)
         elif c == "<":
             if self.match("="):
                 self.add_token(TokenType.LESS_EQUAL)

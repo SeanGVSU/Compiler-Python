@@ -1,0 +1,18 @@
+Design choices relative to Lox and Expression grammar:
+
+Literal, Grouping, Unary, Binary
+with same setup as lox
+
+Set up:
+I have the hard codded examples at the bottom of the code so you can just uncomment it when you want to test it and just run this command.
+python3 src/ast_printer.py
+
+Tests:
+my three test that I chose covered basic adding, then my next test was for negatives, then lastly I wanted to cover true or false.
+expected output:
+(+ 1 2)
+(- 5)
+(! false)
+
+Limitations/Failing tests:
+whan I started this I forgot the ! token so I needed to add that for these tests to work.

@@ -5,6 +5,7 @@ class TokenType:
     STAR = "STAR"
     SLASH = "SLASH"
     PERCENT = "PERCENT"
+    BANG = "BANG"
 
     EQUAL = "EQUAL"
     EQUAL_EQUAL = "EQUAL_EQUAL"
