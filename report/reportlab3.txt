@@ -1,0 +1,22 @@
+Grammar:
+Primary: literals and parenthesized expressions.
+Unary: -, !, not.
+Multiplicative: *, /, %.
+Additive: +, -.
+Comparison: >, >=, <, <=.
+Equality: ==, !=.
+
+Lox sim/dif:
+Literal(value)
+Grouping(expression)
+Unary(operator, right)
+Binary(left, operator, right)
+
+How to run:
+(for repel)
+python3 src/python.py
+(for file)
+python3 src/python.py text.py
+
+Known limitations:
+None is nil

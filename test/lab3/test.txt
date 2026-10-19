@@ -1,0 +1,11 @@
+(1 - 1)
+"hello"
+True
+not False
+1 != 2
+
+# error test
+(
+1 +
+5 5
+5 @ 5

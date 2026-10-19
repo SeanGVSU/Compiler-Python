@@ -29,6 +29,7 @@ class Scanner:
     def __init__(self, file_text):
         self.code = file_text
         self.tokens = []
+        self.error = []
 
         self.start = 0
         self.current = 0
