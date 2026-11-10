@@ -20,6 +20,15 @@ class Binary:
         self.operator = operator
         self.right = right
 
+class Expression:
+    def __init__(self, expression):
+        self.expression = expression
+
+
+class Print:
+    def __init__(self, expression):
+        self.expression = expression
+
 
 class AstPrinter:
     def print_expr(self, expression):

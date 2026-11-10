@@ -1,29 +1,21 @@
 import sys
 from scanner import Scanner
-from parser import Parser, ParseError
-from ast_printer import AstPrinter
+from parser import Parser
+from interpreter import Interpreter
 
 
 def run_source(code):
     scanner = Scanner(code)
     tokens = scanner.scan_tokens()
-
-    # Do not parse if scanning found errors.
     if scanner.error:
         for errors in scanner.error:
             print(errors)
         return
+
     parser = Parser(tokens)
-
-    try:
-        expression = parser.parse()
-    except ParseError as error:
-        print(error)
-        return
-
-    # Print only after scanning and parsing succeed.
-    printer = AstPrinter()
-    print(printer.print_expr(expression))
+    statements = parser.parse()
+    interpreter = Interpreter()
+    interpreter.interpret(statements)
 
 def run_repl():
     while True:

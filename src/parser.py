@@ -1,5 +1,6 @@
 from Tokens import TokenType
-from ast_printer import Literal, Grouping, Unary, Binary
+from ast_printer import Literal, Grouping, Unary, Binary, Expression, Print
+
 
 
 class Parser:
@@ -7,13 +8,34 @@ class Parser:
         self.tokens = tokens
         self.current = 0
 
+    # Parse multiple statements
     def parse(self):
-        expression = self.expression()
-        if not self.check(TokenType.EOF):
-            token = self.peek()
-            raise self.error(token,f"Unexpected trailing token '{token.lexeme}'.")
-        return expression
+        statements = []
+        while not self.is_at_end():
+            try:
+                statements.append(self.statement())
+            except ParseError as error:
+                print(error)
+                self.synchronize()
+        return statements
 
+    # Statement parsing
+    def statement(self):
+        if self.match(TokenType.PRINT):
+            return self.print_statement()
+        return self.expression_statement()
+
+    def print_statement(self):
+        value = self.expression()
+        self.consume(TokenType.SEMICOLON, "Expected ';' after print value.")
+        return Print(value)
+
+    def expression_statement(self):
+        value = self.expression()
+        self.consume(TokenType.SEMICOLON, "Expected ';' after expression.")
+        return Expression(value)
+
+    # Expression parsing
     def expression(self):
         return self.equality()
 
@@ -59,26 +81,32 @@ class Parser:
     def primary(self):
         if self.match(TokenType.NUMBER):
             return Literal(self.previous().literal)
-
         if self.match(TokenType.STRING):
             return Literal(self.previous().literal)
-
         if self.match(TokenType.TRUE):
             return Literal(True)
-
         if self.match(TokenType.FALSE):
             return Literal(False)
-
         if self.match(TokenType.NONE):
             return Literal(None)
-
         if self.match(TokenType.LEFT_PAREN):
             expression = self.expression()
-            self.consume(TokenType.RIGHT_PAREN,"Expected ')' after expression.")
+            self.consume(TokenType.RIGHT_PAREN, "Expected ')' after expression.")
             return Grouping(expression)
         raise self.error(self.peek(), "Expected expression.")
 
-    # Helpers
+    # Panic mode
+    def synchronize(self):
+        if not self.is_at_end():
+            self.advance()
+        while not self.is_at_end():
+            if self.previous().type == TokenType.SEMICOLON:
+                return
+            if self.peek().type in (TokenType.PRINT, TokenType.IF, TokenType.WHILE, TokenType.FOR, TokenType.DEF, TokenType.RETURN):
+                return
+            self.advance()
+
+    #helper methods
     def match(self, *token_types):
         for token_type in token_types:
             if self.check(token_type):

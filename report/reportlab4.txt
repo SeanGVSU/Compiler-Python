@@ -1,0 +1,11 @@
+This is the outout for every test case provided:
+
+"one"          [line 1] Syntax error at end: Expected ';' after expression.
+True;          (no output)
+print 2 +      [line 1] Syntax error at end: Expected expression.
+
+4 + 2;         (no output)
+print "one";   one
+print True;    1
+print 1 + 2;   3.0
+print None;    None 
